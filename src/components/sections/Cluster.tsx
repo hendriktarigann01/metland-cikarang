@@ -122,6 +122,7 @@ export function Cluster() {
               <button
                 key={cluster.id}
                 id={`cluster-tab-${cluster.id}`}
+                role="tab"
                 onClick={() => setActiveTab(i)}
                 className={cn(
                   "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
