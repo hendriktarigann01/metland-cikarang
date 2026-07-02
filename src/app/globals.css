@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ──────────────────────────────────────────────────────────────────
+   DESIGN TOKENS
+   Ganti nilai di sini untuk rebranding client tanpa menyentuh komponen.
+   ────────────────────────────────────────────────────────────────── */
+:root {
+  --color-brand-primary: #10998d;
+  --color-brand-secondary: #3d857e;
+  --color-brand-accent: #0d7a70;
+
+  /* Background & Surface */
+  --color-brand-bg: #f4f9f8;
+  --color-brand-surface: #ffffff;
+  --color-brand-border: rgba(16, 153, 141, 0.12);
+
+  /* Text Colors */
+  --color-brand-text: #132422;
+  --color-brand-text-button: #ffffff;
+  --color-brand-muted: #627a77;
+
+  /* Spacing & Radius */
+  --radius-card: 16px;
+  --radius-btn: 10px;
+  --radius-badge: 999px;
+
+  /* Section Padding */
+  --section-py: 6rem;
+  --section-px: 1.5rem;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   RESET & BASE
+   ────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-brand-bg);
+  color: var(--color-brand-text);
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   SCROLLBAR
+   ────────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-brand-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-border);
+  border-radius: 3px;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   SELECTION
+   ────────────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-brand-primary);
+  color: #ffffff;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   SECTION UTILITY
+   ────────────────────────────────────────────────────────────────── */
+@layer utilities {
+  .section-padding {
+    padding-top: var(--section-py);
+    padding-bottom: var(--section-py);
+    padding-left: var(--section-px);
+    padding-right: var(--section-px);
+  }
+
+  .container-wide {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Glassmorphism utility */
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-brand-border);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   CANVAS FRAME SEQUENCE — HERO STICKY CONTAINER
+   ────────────────────────────────────────────────────────────────── */
+.hero-sticky-canvas {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
