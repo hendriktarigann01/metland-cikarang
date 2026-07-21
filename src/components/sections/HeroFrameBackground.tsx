@@ -93,31 +93,27 @@ export function HeroFrameBackground() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const h = window.innerHeight;
-      const maxScroll = h * 5;
+      const maxScroll = h * 4.5;
       const p = Math.min(1, Math.max(0, scrollY / maxScroll));
-
-      // Linear mapping: strictly monotonic progress directly aligned with scroll
-      const mappedProgress = p;
 
       targetFrame = Math.min(
         TOTAL_FRAMES - 1,
-        Math.floor(mappedProgress * (TOTAL_FRAMES - 1)),
+        Math.floor(p * (TOTAL_FRAMES - 1)),
       );
 
-      // Fade-out setelah scroll melampaui 4× viewport (identik Envision)
-      if (scrollY > 4 * h) {
-        opacity = Math.max(0, 1 - (scrollY - 4 * h) / (0.6 * h));
+      if (scrollY > 4.5 * h) {
+        opacity = Math.max(0, 1 - (scrollY - 4.5 * h) / (0.5 * h));
       } else {
         opacity = 1;
       }
     };
 
-    // ── rAF loop — smooth lerp (identik Envision) ─────────────────
+    // ── rAF loop — smooth lerp ────────────────────────────────────
     const updateCanvas = () => {
       const diff = targetFrame - currentFrame;
 
       if (Math.abs(diff) > 0.5) {
-        currentFrame += diff * 0.08; // lerp factor 0.08 — persis Envision
+        currentFrame += diff * 0.08;
         const frameIndex = Math.round(currentFrame);
         if (frameIndex >= 0 && frameIndex < TOTAL_FRAMES) {
           drawFrame(frameIndex);
@@ -129,7 +125,7 @@ export function HeroFrameBackground() {
         container.style.visibility = opacity > 0.01 ? "visible" : "hidden";
       }
 
-      // Update Loading Bar di bagian bawah (CreativeLabV2 Pattern)
+      // Update Loading Bar di bagian bawah
       const smoothP = currentFrame / (TOTAL_FRAMES - 1);
       const percentage = Math.min(100, Math.max(0, Math.round(smoothP * 100)));
 
@@ -142,8 +138,7 @@ export function HeroFrameBackground() {
       if (progressContainerRef.current) {
         const scrollY = window.scrollY;
         const h = window.innerHeight;
-        // Sembunyikan langsung jika scroll sudah hampir keluar dari Hero (>= 4.8 vh) atau smoothP >= 0.98
-        const isPastHero = scrollY >= 4.8 * h || smoothP >= 0.98;
+        const isPastHero = scrollY >= 4.5 * h;
         progressContainerRef.current.style.opacity = isPastHero ? "0" : "1";
         progressContainerRef.current.style.visibility = isPastHero
           ? "hidden"
@@ -207,7 +202,7 @@ export function HeroFrameBackground() {
       {/* ── Canvas background — fixed, identik HeroVideoBackground Envision ── */}
       <div
         ref={containerRef}
-        className="fixed inset-0 z-0 pointer-events-none w-full h-full overflow-hidden"
+        className="fixed inset-0 z-10 pointer-events-none w-full h-full overflow-hidden"
         suppressHydrationWarning
       >
         <canvas
