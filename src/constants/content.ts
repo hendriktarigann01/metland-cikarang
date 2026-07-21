@@ -126,20 +126,59 @@ export const CLUSTER_CONTENT: ClusterContent = {
           installment: "Rp 3 Jutaan / bln",
           bed:       2,
           bath:      1,
-          landArea:  60,
+          landArea:  72,
           buildArea: 33,
-          image:     "/placeholder-unit.jpg",
+          image:     "/type-building/myzora-33-1.webp",
+          images:    [
+            "/type-building/myzora-33-1.webp",
+            "/type-building/myzora-33-2.webp"
+          ]
         },
         {
           id:        "myzora-45",
           name:      "Myzora 45",
-          price:     "Rp 750 Juta",
+          price:     "Rp 715 Juta",
           installment: "Rp 4 Jutaan / bln",
           bed:       3,
-          bath:      2,
+          bath:      1,
           landArea:  72,
           buildArea: 45,
-          image:     "/placeholder-unit.jpg",
+          image:     "/type-building/myzora-45-1.webp",
+          images:    [
+            "/type-building/myzora-45-1.webp",
+            "/type-building/myzora-45-2.webp"
+          ]
+        },
+        {
+          id:        "myzora-56",
+          name:      "Myzora 56",
+          price:     "Rp 955 Juta",
+          installment: "Rp 5 Jutaan / bln",
+          bed:       3,
+          bath:      2,
+          landArea:  84,
+          buildArea: 56,
+          image:     "/type-building/myzora-56-1.webp",
+          images:    [
+            "/type-building/myzora-56-1.webp",
+            "/type-building/myzora-56-2.webp",
+            "/type-building/myzora-56-3.webp"
+          ]
+        },
+        {
+          id:        "myzora-77",
+          name:      "Myzora 77",
+          price:     "Rp 1,21 Miliar",
+          installment: "Rp 6 Jutaan / bln",
+          bed:       4,
+          bath:      3,
+          landArea:  98,
+          buildArea: 77,
+          image:     "/type-building/myzora-77-1.webp",
+          images:    [
+            "/type-building/myzora-77-1.webp",
+            "/type-building/myzora-77-2.webp"
+          ]
         },
       ],
     },
@@ -148,15 +187,42 @@ export const CLUSTER_CONTENT: ClusterContent = {
       name:  "Easton Gateway",
       units: [
         {
-          id:        "vellano-59",
-          name:      "Vellano 59",
-          price:     "Rp 900 Juta",
-          installment: "Rp 5 Jutaan / bln",
-          bed:       3,
+          id:        "easton-100",
+          name:      "Easton 100",
+          price:     "Rp 1,36 Miliar",
+          installment: "Rp 7 Jutaan / bln",
+          bed:       0,
           bath:      2,
-          landArea:  84,
-          buildArea: 59,
-          image:     "/placeholder-unit.jpg",
+          landArea:  100,
+          buildArea: 60,
+          image:     "/type-building/easton-100-1.webp",
+          images:    [
+            "/type-building/easton-100-1.webp",
+            "/type-building/easton-100-2.webp",
+            "/type-building/easton-100-3.webp",
+            "/type-building/easton-100-4.webp",
+            "/type-building/easton-100-5.webp",
+            "/type-building/easton-100-6.webp"
+          ]
+        },
+        {
+          id:        "easton-90",
+          name:      "Easton 90",
+          price:     "Rp 1,21 Miliar",
+          installment: "Rp 6 Jutaan / bln",
+          bed:       0,
+          bath:      2,
+          landArea:  90,
+          buildArea: 54,
+          image:     "/type-building/easton-90-1.webp",
+          images:    [
+            "/type-building/easton-90-1.webp",
+            "/type-building/easton-90-2.webp",
+            "/type-building/easton-90-3.webp",
+            "/type-building/easton-90-4.webp",
+            "/type-building/easton-90-5.webp",
+            "/type-building/easton-90-6.webp"
+          ]
         },
       ],
     },
@@ -165,20 +231,41 @@ export const CLUSTER_CONTENT: ClusterContent = {
       name:  "Weston Gateway",
       units: [
         {
-          id:        "canary-37",
-          name:      "Canary 37",
-          price:     "Rp 680 Juta",
-          installment: "Rp 3,5 Jutaan / bln",
-          bed:       2,
-          bath:      1,
-          landArea:  72,
-          buildArea: 37,
-          image:     "/placeholder-unit.jpg",
+          id:        "weston-100",
+          name:      "Weston 100",
+          price:     "Rp 1,37 Miliar",
+          installment: "Rp 7 Jutaan / bln",
+          bed:       0,
+          bath:      2,
+          landArea:  100,
+          buildArea: 60,
+          image:     "/type-building/weston-100-1.webp",
+          images:    [
+            "/type-building/weston-100-1.webp",
+            "/type-building/weston-100-2.webp",
+            "/type-building/weston-100-3.webp"
+          ]
+        },
+        {
+          id:        "weston-90",
+          name:      "Weston 90",
+          price:     "Rp 1,21 Miliar",
+          installment: "Rp 6 Jutaan / bln",
+          bed:       0,
+          bath:      2,
+          landArea:  90,
+          buildArea: 54,
+          image:     "/type-building/weston-90-1.webp",
+          images:    [
+            "/type-building/weston-90-1.webp",
+            "/type-building/weston-90-2.webp",
+            "/type-building/weston-90-3.webp"
+          ]
         },
       ],
     },
   ],
-};
+}
 
 // ── LANDMARK ─────────────────────────────────────────────────────
 export const LANDMARK_CONTENT: LandmarkContent = {

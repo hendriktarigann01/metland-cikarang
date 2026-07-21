@@ -58,6 +58,7 @@ export interface UnitSpec {
   landArea:     number;
   buildArea:    number;
   image:        string;
+  images?:      string[];
 }
 
 export interface ClusterItem {

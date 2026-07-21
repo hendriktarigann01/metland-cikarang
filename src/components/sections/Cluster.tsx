@@ -11,22 +11,81 @@ import type { UnitSpec } from "@/types";
 import { cn } from "@/lib/utils";
 
 function UnitCard({ unit }: { unit: UnitSpec }) {
+  const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const waMessage = `Halo, saya tertarik dengan unit ${unit.name} (${unit.price}). Mohon informasi lebih lanjut.`;
+
+  // Use unit.images if available, otherwise fallback to unit.image
+  const images = unit.images && unit.images.length > 0 ? unit.images : [unit.image];
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentImgIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentImgIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   return (
     <div className="glass rounded-[var(--radius-card)] overflow-hidden group hover:border-brand-secondary/40 transition-colors duration-300">
-      {/* Unit Image Placeholder */}
+      {/* Unit Image Carousel */}
       <div className="relative aspect-video bg-gradient-to-br from-brand-surface to-brand-bg flex items-center justify-center overflow-hidden">
-        <div className="text-center">
-          <Maximize2 size={32} className="text-brand-text/20 mx-auto mb-2" />
-          <p className="text-xs text-brand-text/30">{unit.name}</p>
-        </div>
+        {images.map((img, idx) => (
+          <img
+            key={idx}
+            src={img}
+            alt={`${unit.name} - View ${idx + 1}`}
+            className={cn(
+              "absolute inset-0 w-full h-full object-cover transition-opacity duration-500",
+              idx === currentImgIndex ? "opacity-100" : "opacity-0 pointer-events-none"
+            )}
+          />
+        ))}
+
+        {/* Carousel controls */}
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={handlePrev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors pointer-events-auto z-10 text-xs font-bold"
+              aria-label="Previous image"
+            >
+              &#10094;
+            </button>
+            <button
+              onClick={handleNext}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors pointer-events-auto z-10 text-xs font-bold"
+              aria-label="Next image"
+            >
+              &#10095;
+            </button>
+          </>
+        )}
+
         {/* Price Badge */}
-        <div className="absolute top-3 left-3">
+        <div className="absolute top-3 left-3 z-10">
           <span className="px-3 py-1 bg-brand-primary text-white text-xs rounded-full">
             {unit.price}
           </span>
         </div>
+
+        {/* Indicator dots */}
+        {images.length > 1 && (
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+            {images.map((_, idx) => (
+              <span
+                key={idx}
+                className={cn(
+                  "w-1.5 h-1.5 rounded-full transition-all duration-300",
+                  idx === currentImgIndex ? "bg-white w-3" : "bg-white/40"
+                )}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Info */}
@@ -39,14 +98,16 @@ function UnitCard({ unit }: { unit: UnitSpec }) {
         </p>
 
         {/* Specs */}
-        <div className="grid grid-cols-4 gap-2 mb-5">
-          <div className="flex flex-col items-center gap-1 p-2 rounded-lg bg-white/5">
-            <BedDouble size={14} className="text-brand-secondary" />
-            <span className="text-xs text-brand-text font-medium">
-              {unit.bed}
-            </span>
-            <span className="text-[10px] text-brand-text/50">KT</span>
-          </div>
+        <div className={cn("grid gap-2 mb-5", unit.bed > 0 ? "grid-cols-4" : "grid-cols-3")}>
+          {unit.bed > 0 && (
+            <div className="flex flex-col items-center gap-1 p-2 rounded-lg bg-white/5">
+              <BedDouble size={14} className="text-brand-secondary" />
+              <span className="text-xs text-brand-text font-medium">
+                {unit.bed}
+              </span>
+              <span className="text-[10px] text-brand-text/50">KT</span>
+            </div>
+          )}
           <div className="flex flex-col items-center gap-1 p-2 rounded-lg bg-white/5">
             <Bath size={14} className="text-brand-secondary" />
             <span className="text-xs text-brand-text font-medium">
